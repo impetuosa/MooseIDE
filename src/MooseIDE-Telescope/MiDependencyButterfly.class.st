@@ -3,7 +3,8 @@ Class {
 	#superclass : #MiAbstractVisualization,
 	#instVars : [
 		'entity',
-		'butterfly'
+		'butterfly',
+		'miButterflyPalette'
 	],
 	#category : #'MooseIDE-Telescope-Butterfly'
 }
@@ -12,7 +13,7 @@ Class {
 MiDependencyButterfly >> decorateEntity [
 	butterfly mainEntity: self entity.
 	(butterfly styleSheet > #entity)
-		backgroundColor: Color red;
+		backgroundColor: (miButterflyPalette colorAt: #backgroundMainNode);
 		nodeLabel: #name.
 	butterfly > #central addStyle: #entity
 ]
@@ -21,7 +22,7 @@ MiDependencyButterfly >> decorateEntity [
 MiDependencyButterfly >> decorateIncoming [
 	butterfly
 		leftEntities: [ :e | e queryAllIncoming withoutSelfLoops atScope: entity class ].
-	butterfly styleSheet > #incoming backgroundColor: Color green.
+	butterfly styleSheet > #incoming backgroundColor: (miButterflyPalette colorAt: #backgroundIncomingNode).
 	butterfly > #left addStyle: #incoming
 ]
 
@@ -29,7 +30,7 @@ MiDependencyButterfly >> decorateIncoming [
 MiDependencyButterfly >> decorateOutgoing [
 	butterfly
 		rightEntities: [ :e | e queryAllOutgoing withoutSelfLoops atScope: entity class ].
-	butterfly styleSheet > #outgoing backgroundColor: Color blue.
+	butterfly styleSheet > #outgoing backgroundColor: (miButterflyPalette colorAt: #backgroundOutgoingNode).
 	butterfly > #right addStyle: #outgoing
 ]
 
@@ -41,6 +42,13 @@ MiDependencyButterfly >> entity [
 { #category : #accessing }
 MiDependencyButterfly >> entity: anObject [
 	entity := anObject
+]
+
+{ #category : #initialization }
+MiDependencyButterfly >> initialize [ 
+
+	super initialize .
+	miButterflyPalette := MiDependencyButterflyPalette new 
 ]
 
 { #category : #running }
