@@ -5,13 +5,15 @@ Class {
 }
 
 { #category : #style }
-MiDependencyButterflyPalette >> beDefaultStyle [ 
-
-	  self addName: #backgroundEntity forColor: Color red;
-				addName: #backgroundIncoming forColor: Color green;
-				addName: #backgroundOutgoing forColor: Color blue;
-				addName: #labelColor forColor: Color black;
-				addName: #edgeColor forColor: Color lightGray 
+MiDependencyButterflyPalette >> beDefaultStyle [
+	
+	super beDefaultStyle.
+	self
+		addName: #backgroundMainNode forColor: Color red;
+		addName: #backgroundIncomingNode forColor: Color green;
+		addName: #backgroundOutgoingNode forColor: Color blue;
+		addName: #labelColor forColor: Color black;
+		addName: #edgeColor forColor: Color lightGray
 ]
 
 { #category : #initialization }
