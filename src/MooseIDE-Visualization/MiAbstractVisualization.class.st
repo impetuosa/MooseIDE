@@ -16,7 +16,7 @@ MiAbstractVisualization >> colorFor: anEntity [
 
 { #category : #helpers }
 MiAbstractVisualization >> highlightColor [
-	^ self theme warningTextColor
+	^ MiVisualizationPalette new colorAt: #highlightColor
 ]
 
 { #category : #highlighting }
