@@ -80,7 +80,6 @@ ClpPaletteGenerator >> gtInspectorColorsIn: composite [
 ClpPaletteGenerator >> initialize [ 
 	
 	super initialize .
-	numberOfColors := 20.
 	generatedPalette := GeneratedPalette new
 ]
 
@@ -99,5 +98,5 @@ ClpPaletteGenerator >> numberOfColors [
 { #category : #accessing }
 ClpPaletteGenerator >> numberOfColors: anInteger [
 
-	numberOfColors := anInteger
+	numberOfColors := anInteger  
 ]
