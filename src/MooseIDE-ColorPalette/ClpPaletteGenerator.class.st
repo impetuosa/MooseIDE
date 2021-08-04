@@ -36,7 +36,7 @@ ClpPaletteGenerator >> generate [
 	^ self generate: self numberOfColors
 ]
 
-{ #category : #translating }
+{ #category : #generating }
 ClpPaletteGenerator >> generate: aNumberOfColors [
 	
 	"return an object of palette with the specified number of colors"
