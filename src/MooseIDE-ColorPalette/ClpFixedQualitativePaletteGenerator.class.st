@@ -1,7 +1,7 @@
 "
 I am a fixed qualitative palette generator. I can extract colors from predefined qualitative palettes. The extracted colors are all distinct.
 
-**Note: You can choose until 24 colors**
+**Note: You can choose until 60 colors**
 
 Example:
 ```Smalltalk
