@@ -8,7 +8,8 @@ Class {
 		'entities',
 		'selected',
 		'incomingDependencies',
-		'outgoingDependencies'
+		'outgoingDependencies',
+		'miDependencyPalette'
 	],
 	#category : #'MooseIDE-Dependency-Dependency'
 }
@@ -51,9 +52,9 @@ MiDependencyVisualization >> colorForEdge: edge ofShape: shape [
 		ifFalse: [ edge model key ].
 	^ ((incomingDependencies at: shape model) includes: dependency)
 		ifTrue: [ ((outgoingDependencies at: shape model) includes: dependency)
-				ifTrue: [ "Incoming and outgoing" Color red ]
-				ifFalse: [ "Incoming" Color green ] ]
-		ifFalse: [ "Outgoing" Color blue ]
+				ifTrue: [ "Incoming and outgoing" miDependencyPalette colorAt: #incomingOutgoingEdge ]
+				ifFalse: [ "Incoming" miDependencyPalette colorAt: #incomingEdge ] ]
+		ifFalse: [ "Outgoing" miDependencyPalette colorAt: #outgoingEdge ]
 ]
 
 { #category : #running }
@@ -87,7 +88,8 @@ MiDependencyVisualization >> highlightShapes [
 { #category : #initialization }
 MiDependencyVisualization >> initialize [
 	super initialize.
-	entities := #()
+	entities := #().
+	miDependencyPalette := MiDependencyVisualizationPalette new
 ]
 
 { #category : #legend }
