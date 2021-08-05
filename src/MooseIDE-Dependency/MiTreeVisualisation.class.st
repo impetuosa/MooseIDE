@@ -8,6 +8,12 @@ Class {
 	#category : #'MooseIDE-Dependency-Tree'
 }
 
+{ #category : #'as yet unclassified' }
+MiTreeVisualisation class >> createPalette [ 
+
+	^ MiTreeVisualizationPalette  
+]
+
 { #category : #running }
 MiTreeVisualisation >> boxCompositeFor: cls [
 	| label box |
@@ -61,7 +67,7 @@ MiTreeVisualisation >> highlightShapes [
 MiTreeVisualisation >> newBox [
 	^ RSBox new
 		size: 100;
-		color: self theme selectionColor;
+		color: (palette colorAt: #nodeBackground);
 		yourself
 ]
 
@@ -69,7 +75,7 @@ MiTreeVisualisation >> newBox [
 MiTreeVisualisation >> newLabel: name [
 	^ RSLabel new
 		text: name;
-		color: self theme textColor;
+		color: (palette colorAt: #label);
 		yourself
 ]
 
