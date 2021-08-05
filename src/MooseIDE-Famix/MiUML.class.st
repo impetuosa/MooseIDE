@@ -9,6 +9,12 @@ Class {
 	#category : #'MooseIDE-Famix-UML'
 }
 
+{ #category : #'as yet unclassified' }
+MiUML class >> createPalette [ 
+
+	^ MiUMLPalette 
+]
+
 { #category : #highlighting }
 MiUML >> highlightShapes [
 	self canvas nodes
