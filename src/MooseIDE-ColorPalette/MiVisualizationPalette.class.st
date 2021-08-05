@@ -1,5 +1,5 @@
 "
-I am the Midas visualization palette
+I am the MooseIDE visualization palette
 "
 Class {
 	#name : #MiVisualizationPalette,
@@ -8,10 +8,15 @@ Class {
 }
 
 { #category : #style }
-MiVisualizationPalette >> beDefaultStyle [ 
+MiVisualizationPalette >> beDefaultStyle [
 
-	self addName: #highlightColor forColor: Color yellow darker;
-		  addName: #noHighlightColor forColor: (Color r: 0.68 g: 0.83 b: 0.97 alpha: 0.4)
+	self
+		addName: #highlight forColor: Color yellow darker;
+		addName: #nodeBackground forColor: (Color r: 0.68 g: 0.83 b: 0.97); "smalltalk color lightBlue"	
+		addName: #highlightSelectedNode forColor: (Color blue alpha: 0.3); "make a shadow"
+		addName: #label forColor: Color black;
+		addName: #edge forColor: Color black;
+		addName: #border forColor: Color black
 ]
 
 { #category : #initialization }

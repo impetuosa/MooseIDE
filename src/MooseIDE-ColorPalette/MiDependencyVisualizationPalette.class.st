@@ -9,11 +9,10 @@ MiDependencyVisualizationPalette >> beDefaultStyle [
 
 	super beDefaultStyle.
 	self
-		addName: #defaultEdge forColor: Color black;
 		addName: #incomingEdge forColor: Color green;
 		addName: #outgoingEdge forColor: Color blue;
 		addName: #incomingOutgoingEdge forColor: Color red;
-		addName: #numberOfLinesBeginScale forColor: Color white; "this is for background boxes"
-		addName: #numberOfLinesEndScale forColor: Color darkGray; "this is for background boxes"
-		addName: #highlightNode forColor: Color yellow darker "when we hover an entity"
+		addName: #startingGradient forColor: Color white; "this is for background boxes"
+		addName: #endingGradient forColor: Color darkGray; "this is for background boxes"
+		addName: #legendBackground forColor: (Color white alpha: 0.8)
 ]
