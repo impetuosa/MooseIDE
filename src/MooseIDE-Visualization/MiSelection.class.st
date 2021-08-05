@@ -2,9 +2,9 @@ Class {
 	#name : #MiSelection,
 	#superclass : #RSInteraction,
 	#instVars : [
-		'shadowColor',
 		'selectionAction',
-		'marginPercentage'
+		'marginPercentage',
+		'palette'
 	],
 	#category : #'MooseIDE-Visualization'
 }
@@ -14,6 +14,13 @@ MiSelection class >> on: selectionAction [
 	^ self new
 		on: selectionAction;
 		yourself
+]
+
+{ #category : #initialization }
+MiSelection >> initialize [ 
+
+	super initialize .
+	palette := MiVisualizationPalette new
 ]
 
 { #category : #accessing }
@@ -42,6 +49,12 @@ MiSelection >> onShape: aShape [
 	aShape when: RSMouseClick do: [ self selection: aShape ]
 ]
 
+{ #category : #accessing }
+MiSelection >> palette [
+
+	^ palette
+]
+
 { #category : #hooks }
 MiSelection >> putShadowOn: aShape [
 	| shadow |
@@ -49,7 +62,7 @@ MiSelection >> putShadowOn: aShape [
 		fromRectangle:
 			(aShape encompassingRectangle
 				expandBy: aShape extent * self marginPercentage);
-		paint: self shadowColor;
+		paint: (self palette colorAt: #highlightSelectedNode);
 		yourself.
 	aShape parent addShape: shadow before: aShape.
 	aShape topParent propertyAt: self key put: shadow
@@ -69,14 +82,4 @@ MiSelection >> selection: aShape [
 		putShadowOn: aShape.
 	aShape canvas signalUpdate.
 	selectionAction value: aShape model
-]
-
-{ #category : #accessing }
-MiSelection >> shadowColor [
-	^ shadowColor ifNil: [ shadowColor := Color blue alpha: 0.3 ]
-]
-
-{ #category : #accessing }
-MiSelection >> shadowColor: aColor [
-	shadowColor := aColor
 ]
