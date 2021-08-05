@@ -8,18 +8,23 @@ Class {
 		'entities',
 		'selected',
 		'incomingDependencies',
-		'outgoingDependencies',
-		'miDependencyPalette'
+		'outgoingDependencies'
 	],
 	#category : #'MooseIDE-Dependency-Dependency'
 }
+
+{ #category : #'as yet unclassified' }
+MiDependencyVisualization class >> createPalette [ 
+
+	^ MiDependencyVisualizationPalette 
+]
 
 { #category : #running }
 MiDependencyVisualization >> buildDependencyLinks [
 	RSEdgeBuilder arrowedLine
 		canvas: self canvas;
 		withBorderAttachPoint;
-		color: self theme textColor;
+		color: (palette colorAt: #edge);
 		source: self entities
 			connectFrom: #yourself
 			toAll:
@@ -52,9 +57,9 @@ MiDependencyVisualization >> colorForEdge: edge ofShape: shape [
 		ifFalse: [ edge model key ].
 	^ ((incomingDependencies at: shape model) includes: dependency)
 		ifTrue: [ ((outgoingDependencies at: shape model) includes: dependency)
-				ifTrue: [ "Incoming and outgoing" miDependencyPalette colorAt: #incomingOutgoingEdge ]
-				ifFalse: [ "Incoming" miDependencyPalette colorAt: #incomingEdge ] ]
-		ifFalse: [ "Outgoing" miDependencyPalette colorAt: #outgoingEdge ]
+				ifTrue: [ "Incoming and outgoing" palette colorAt: #incomingOutgoingEdge ]
+				ifFalse: [ "Incoming" palette colorAt: #incomingEdge ] ]
+		ifFalse: [ "Outgoing" palette colorAt: #outgoingEdge ]
 ]
 
 { #category : #running }
@@ -62,8 +67,8 @@ MiDependencyVisualization >> colorScale [
 	^ NSScale linear
 		domain: #(1 500);
 		range:
-			{Color white.
-			Color darkGray}
+			{palette colorAt: #startingGradient.
+			palette colorAt: #endingGradient}
 ]
 
 { #category : #accessing }
@@ -88,8 +93,7 @@ MiDependencyVisualization >> highlightShapes [
 { #category : #initialization }
 MiDependencyVisualization >> initialize [
 	super initialize.
-	entities := #().
-	miDependencyPalette := MiDependencyVisualizationPalette new
+	entities := #()
 ]
 
 { #category : #legend }
@@ -100,21 +104,21 @@ MiDependencyVisualization >> legend [
 			b
 				text: 'Number of lines of code'
 				withFadingRamp:
-					{(0 -> 'white').
-					(1 -> 'black')}.
+					{(0 -> (palette colorAt: #startingGradient)).
+					(1 -> (palette colorAt: #endingGradient))}.
 			b
 				polymetricWidth: 'number of incoming dependencies'
 				height: 'number of outgoing dependencies'
 				box: 'Entity'.
-			b text: 'Outgoing' withShape: (self legendArrowColored: Color blue).
+			b text: 'Outgoing' withShape: (self legendArrowColored: (palette colorAt: #outgoingEdge)).
 			b
 				text: 'Incoming'
-				withShape: (self legendArrowColored: Color green).
-			b text: 'Both' withShape: (self legendArrowColored: Color red).
+				withShape: (self legendArrowColored: (palette colorAt: #incomingEdge)).
+			b text: 'Both' withShape: (self legendArrowColored: (palette colorAt: #incomingOutgoingEdge)).
 			b
 				legendDo: [ :s | 
 					s
-						color: (Color white alpha: 0.8);
+						color: (palette colorAt: #legendBackground);
 						scaleBy: 0.7;
 						padding: 15 ] ]
 ]
