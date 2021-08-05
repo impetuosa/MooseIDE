@@ -2,10 +2,17 @@ Class {
 	#name : #MiAbstractVisualization,
 	#superclass : #SpRoassalPresenter,
 	#instVars : [
-		'highlightedEntities'
+		'highlightedEntities',
+		'palette'
 	],
 	#category : #'MooseIDE-Visualization'
 }
+
+{ #category : #'as yet unclassified' }
+MiAbstractVisualization class >> createPalette [ 
+
+	^ self subclassResponsibility 
+]
 
 { #category : #helpers }
 MiAbstractVisualization >> colorFor: anEntity [
@@ -16,7 +23,7 @@ MiAbstractVisualization >> colorFor: anEntity [
 
 { #category : #helpers }
 MiAbstractVisualization >> highlightColor [
-	^ MiVisualizationPalette new colorAt: #highlightColor
+	^ palette colorAt: #highlight
 ]
 
 { #category : #highlighting }
@@ -47,12 +54,13 @@ MiAbstractVisualization >> highlightedEntities: entities [
 MiAbstractVisualization >> initialize [
 	super initialize.
 	highlightedEntities := MooseGroup new.
-	self script: [ :canvas | canvas @ RSCanvasController new noLegend ]
+	self script: [ :canvas | canvas @ RSCanvasController new noLegend ].
+	palette := self class createPalette new
 ]
 
 { #category : #helpers }
 MiAbstractVisualization >> noHighlightColorFor: anEntity [
-	^ self theme selectionColor
+	^ palette colorAt: #nodeBackground
 ]
 
 { #category : #running }
