@@ -76,7 +76,7 @@ GeneratedPalette >> previousColor [
 { #category : #removing }
 GeneratedPalette >> removeColorAt: aKey [
 	
-	"I remove the key anIndex from the dictionary of colors. I modify the colorsDictionary. the value of the key is returned"
+	"I remove the key aKey from the dictionary of colors. I modify the colorsDictionary. the value of the key is returned"
 	
 	| newColorsDictionary removedColor |
 	newColorsDictionary := OrderedDictionary new.

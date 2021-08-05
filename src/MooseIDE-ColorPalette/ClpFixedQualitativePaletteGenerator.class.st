@@ -51,11 +51,11 @@ ClpFixedQualitativePaletteGenerator class >> sample16AccentColors [
 			  (Color fromString: '#008856').
 			  (Color fromString: '#e68fac').
 			  (Color fromString: '#0067a5').
-			  (Color fromString: '#f99379').
+			  (Color fromString: '#D17B65').
 			  (Color fromString: '#c2b280').
 			  (Color fromString: '#873600').
 			  (Color fromString: '#8db600').
-			  (Color fromString: '#DEC663').
+			  (Color fromString: '#ffffff').
 			  (Color fromString: '#48c9b0').
 			  (Color fromString: '#ff5050').
 			  (Color fromString: '#000000')}
@@ -83,7 +83,7 @@ ClpFixedQualitativePaletteGenerator class >> sample20AccentColors [
 			  (Color fromString: '#a3cbcc').
 			  (Color fromString: '#a779e0').
 			  (Color fromString: '#978fa1').
-			  (Color fromString: '#fae170').
+			  (Color fromString: '#E6CF67').
 			  (Color fromString: '#b09900') }
 ]
 
@@ -98,7 +98,7 @@ ClpFixedQualitativePaletteGenerator class >> sample24AccentColors [
 			  (Color fromString: '#3283fe').
 			  (Color fromString: '#feaf16').
 			  (Color fromString: '#e342a1').
-			  (Color fromString: '#1fecbf').
+			  (Color fromString: '#1CD8AF').
 			  (Color fromString: '#2bc6e8').
 			  (Color fromString: '#dea0fd').
 			  (Color fromString: '#aa0dfe').
