@@ -11,6 +11,12 @@ Class {
 	#category : #'MooseIDE-Dependency-TreeMap'
 }
 
+{ #category : #'as yet unclassified' }
+MiTreeMap class >> createPalette [ 
+
+	^ MiTreeMapPalette 
+]
+
 { #category : #helpers }
 MiTreeMap >> borderFor: anEntity [
 	| children |
@@ -20,7 +26,7 @@ MiTreeMap >> borderFor: anEntity [
 		color:
 			((highlightedEntities includesAny: children)
 				ifTrue: [ self highlightColor ]
-				ifFalse: [ Color black ])
+				ifFalse: [palette colorAt: #border ])
 ]
 
 { #category : #accessing }
