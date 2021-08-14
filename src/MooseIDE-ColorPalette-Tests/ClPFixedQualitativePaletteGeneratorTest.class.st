@@ -1,17 +1,17 @@
 Class {
-	#name : #ClpFixedQualitativePaletteGeneratorTest,
-	#superclass : #ClpPaletteGeneratorTest,
-	#category : #'MooseIDE-ColorPalette-Tests-GeneratePalettes-Test'
+	#name : #ClPFixedQualitativePaletteGeneratorTest,
+	#superclass : #ClPPaletteGeneratorTest,
+	#category : #'MooseIDE-ColorPalette-Tests-PaletteGenerator-Test'
 }
 
 { #category : #accessing }
-ClpFixedQualitativePaletteGeneratorTest >> classToTest [ 
+ClPFixedQualitativePaletteGeneratorTest >> classToTest [ 
 
-	 ^ ClpFixedQualitativePaletteGenerator  
+	 ^ ClPFixedQualitativePaletteGenerator  
 ]
 
 { #category : #tests }
-ClpFixedQualitativePaletteGeneratorTest >> testFromColorsGet [
+ClPFixedQualitativePaletteGeneratorTest >> testFromColorsGet [
 
 	| colors extractedColors |
 	colors := { Color red. Color blue. Color white. Color black }.

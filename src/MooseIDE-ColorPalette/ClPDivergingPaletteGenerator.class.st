@@ -9,7 +9,7 @@ I am a diverging palette generator, and I can make a gradient of 3 colors.
 
 Example:
 ```Smalltalk
-p := ClpDivergingPaletteGenerator new.
+p := ClPDivergingPaletteGenerator new.
 ""s: is startingColor, m: is the middleColor, e: is the endingColor""
 p s: Color red m: Color white e: Color green; 
 	generate: 10 ""generate 10 colors""
@@ -18,43 +18,27 @@ p s: Color red m: Color white e: Color green;
 
 "
 Class {
-	#name : #ClpDivergingPaletteGenerator,
-	#superclass : #ClpPaletteGenerator,
+	#name : #ClPDivergingPaletteGenerator,
+	#superclass : #ClPPaletteGenerator,
 	#instVars : [
 		'startingColor',
 		'middleColor',
 		'endingColor'
 	],
-	#category : #'MooseIDE-ColorPalette-GeneratePalettes'
+	#category : #'MooseIDE-ColorPalette-PaletteGenerator'
 }
 
-{ #category : #accessing }
-ClpDivergingPaletteGenerator class >> indexOfTheMiddleColor: aNumberOfColors [
-
-	| index |
-	^ index := aNumberOfColors even
-		           ifTrue: [ aNumberOfColors // 2 ]
-		           ifFalse: [ aNumberOfColors // 2 + 1 ]
-]
-
-{ #category : #accessing }
-ClpDivergingPaletteGenerator class >> s: startColor m: middleColor e: endColor [
-
-	^ self new s:startColor m:middleColor e:endColor
-]
-
 { #category : #private }
-ClpDivergingPaletteGenerator >> calculateStepsRGBBetween: startColor and: endColor [
+ClPDivergingPaletteGenerator >> calculateRGBStepsBetween: startColor and: endColor [
 	
-	"calculate RGB steps between startColor and an endColor. Return a collection with the 3 RGb steps"
+	"calculate RGB steps between startColor and an endColor. Return a collection with the RGB steps"
 	
-	| collection stepR stepG stepB halfNumberColors|
-	
-	halfNumberColors := numberOfColors // 2.
+	| collection stepR stepG stepB dividedNumberColors |
+	dividedNumberColors := numberOfColors // 2.
 	collection := OrderedCollection new.
-	stepR := endColor red - startColor red / halfNumberColors.
-	stepG := endColor green - startColor green / halfNumberColors.
-	stepB := endColor blue - startColor blue / halfNumberColors.
+	stepR := endColor red - startColor red / dividedNumberColors.
+	stepG := endColor green - startColor green / dividedNumberColors.
+	stepB := endColor blue - startColor blue / dividedNumberColors.
 	collection 
 			add: stepR value; 
 			add: stepG value; 	
@@ -63,28 +47,27 @@ ClpDivergingPaletteGenerator >> calculateStepsRGBBetween: startColor and: endCol
 ]
 
 { #category : #initialization }
-ClpDivergingPaletteGenerator >> initialize [ 
+ClPDivergingPaletteGenerator >> initialize [ 
 
 	super initialize .
-	startingColor := Color blue .
-	middleColor := Color white.
-	endingColor := Color red.
+	middleColor := Color white
+
 ]
 
 { #category : #accessing }
-ClpDivergingPaletteGenerator >> makeColors [
+ClPDivergingPaletteGenerator >> makeColors [
 
 	^ self multiHueGradient 
 ]
 
 { #category : #accessing }
-ClpDivergingPaletteGenerator >> multiHueGradient [
+ClPDivergingPaletteGenerator >> multiHueGradient [
 	
 	"create a multi hue gradient colors between startColor, middleColor and an endColor"
 	
 	| colors stepsRGB1 stepsRGB2 indexMiddleColor |
-	stepsRGB1 := self calculateStepsRGBBetween: startingColor and: middleColor .
-	stepsRGB2 := self calculateStepsRGBBetween: middleColor and: endingColor .
+	stepsRGB1 := self calculateRGBStepsBetween: startingColor and: middleColor .
+	stepsRGB2 := self calculateRGBStepsBetween: middleColor and: endingColor .
 	indexMiddleColor := self class indexOfTheMiddleColor: numberOfColors.
 	colors := OrderedCollection new.
 	colors add: startingColor.
@@ -105,16 +88,16 @@ ClpDivergingPaletteGenerator >> multiHueGradient [
 ]
 
 { #category : #accessing }
-ClpDivergingPaletteGenerator >> s: aStartingColor e: anEndingcolor [
+ClPDivergingPaletteGenerator >> s: aStartingColor e: anEndingcolor [
 	
-	startingColor := aStartingColor .
-	endingColor := anEndingcolor 
+	startingColor := Color colorFrom: aStartingColor .
+	endingColor := Color colorFrom: anEndingcolor 
 ]
 
 { #category : #accessing }
-ClpDivergingPaletteGenerator >> s: aStartingColor m: aMiddleColor e: anEndingColor [
+ClPDivergingPaletteGenerator >> s: aStartingColor m: aMiddleColor e: anEndingColor [
 
-	startingColor := aStartingColor .
-	middleColor := aMiddleColor.
-	endingColor := anEndingColor 
+	self s: aStartingColor e: anEndingColor .
+	middleColor := Color colorFrom: aMiddleColor.
+	
 ]
