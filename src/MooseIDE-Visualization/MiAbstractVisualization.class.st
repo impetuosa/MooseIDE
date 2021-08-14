@@ -23,7 +23,7 @@ MiAbstractVisualization >> colorFor: anEntity [
 
 { #category : #helpers }
 MiAbstractVisualization >> highlightColor [
-	^ palette colorAt: #highlight
+	^ palette highlight
 ]
 
 { #category : #highlighting }
