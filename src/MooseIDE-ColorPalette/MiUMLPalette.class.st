@@ -9,9 +9,9 @@ MiUMLPalette >> beDefaultStyle [
 
 	super beDefaultStyle .
 	 self
-		addName: #boxBackground forColor: (Color colorFrom: 'cfd9df'); "light gray"
-		addName: #boxBorder forColor: (Color colorFrom: '666EA0'); "dark blue"
-		addName: #textColor forColor: Color black;
-		addName: #highlightBorder forColor: Color yellow darker;
-		addName: #highlightSelectedEntity forColor: (Color blue alpha: 0.3)
+		at: #boxBackground put: (Color colorFrom: 'cfd9df'); "light gray"
+		at: #boxBorder put: (Color colorFrom: '666EA0'); "dark blue"
+		at: #textColor put: Color black;
+		at: #highlightBorder put: Color yellow darker;
+		at: #highlightSelectedEntity put: (Color blue alpha: 0.3)
 ]

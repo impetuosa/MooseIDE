@@ -9,10 +9,10 @@ MiDependencyVisualizationPalette >> beDefaultStyle [
 
 	super beDefaultStyle.
 	self
-		addName: #incomingEdge forColor: Color green;
-		addName: #outgoingEdge forColor: Color blue;
-		addName: #incomingOutgoingEdge forColor: Color red;
-		addName: #startingGradient forColor: Color white; "this is for background boxes"
-		addName: #endingGradient forColor: Color darkGray; "this is for background boxes"
-		addName: #legendBackground forColor: (Color white alpha: 0.8)
+		at: #incomingEdge put: Color green;
+		at: #outgoingEdge put: Color blue;
+		at: #incomingOutgoingEdge put: Color red;
+		at: #startingGradient put: Color white; "this is for background boxes"
+		at: #endingGradient put: Color darkGray; "this is for background boxes"
+		at: #legendBackground put: (Color white alpha: 0.8)
 ]

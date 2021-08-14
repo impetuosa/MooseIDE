@@ -9,7 +9,7 @@ MiDependencyButterflyPalette >> beDefaultStyle [
 	
 	super beDefaultStyle.
 	self
-		addName: #mainNodeBackground forColor: Color red;
-		addName: #incomingNodeBackground forColor: Color green;
-		addName: #outgoingNodeBackground forColor: Color blue
+		at: #mainNodeBackground put: Color red;
+		at: #incomingNodeBackground put: Color green;
+		at: #outgoingNodeBackground put: Color blue
 ]
