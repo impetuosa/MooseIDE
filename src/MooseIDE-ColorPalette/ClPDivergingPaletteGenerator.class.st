@@ -28,6 +28,21 @@ Class {
 	#category : #'MooseIDE-ColorPalette-PaletteGenerator'
 }
 
+{ #category : #accessing }
+ClPDivergingPaletteGenerator class >> indexOfTheMiddleColor: aNumberOfColors [
+
+	| index |
+	^ index := aNumberOfColors even
+		           ifTrue: [ aNumberOfColors // 2 ]
+		           ifFalse: [ aNumberOfColors // 2 + 1 ]
+]
+
+{ #category : #accessing }
+ClPDivergingPaletteGenerator class >> s: startColor m: middleColor e: endColor [
+
+	^ self new s:startColor m:middleColor e:endColor
+]
+
 { #category : #private }
 ClPDivergingPaletteGenerator >> calculateRGBStepsBetween: startColor and: endColor [
 	
