@@ -11,6 +11,41 @@ GeneratedPaletteTest >> classToTest [
 ]
 
 { #category : #tests }
+GeneratedPaletteTest >> testAdd [
+	
+	| c1 c2 |
+	c1 := Color green.
+	c2 := Color brown.
+	
+	self assert: emptyPalette asCollection isEmpty.
+
+	emptyPalette add: c1.
+	self assert: emptyPalette asCollection size equals: 1.
+	self assert: (emptyPalette colorAt: 1) equals: c1.
+	emptyPalette add: c2.
+	self assert: emptyPalette asCollection size equals: 2.
+	self assert: (emptyPalette colorAt: 2) equals: c2.
+]
+
+{ #category : #tests }
+GeneratedPaletteTest >> testAddNameForColor [
+	
+	self assert: emptyPalette asCollection isEmpty.
+	
+	emptyPalette addName: #pink forColor: Color pink.
+	self assert: emptyPalette asCollection size equals: 1.
+	self assert: (emptyPalette colorsDictionary includesAssociation: #pink -> Color pink).
+	
+	
+]
+
+{ #category : #tests }
+GeneratedPaletteTest >> testCheckAllElementsAreColors [
+	
+	self assert: (nonEmptyPalette class checkAllElementsAreColors: nonEmptyPalette asCollection). 
+]
+
+{ #category : #tests }
 GeneratedPaletteTest >> testCurrentColor [
 	
 	| aChosenColor |
@@ -48,21 +83,16 @@ GeneratedPaletteTest >> testPreviousColor [
 ]
 
 { #category : #tests }
-GeneratedPaletteTest >> testRemoveColorAt [
-	
-	| colorToRemove removedColor nonExistantKeyColor |
-	colorToRemove := self colors first.
-	self assert: nonEmptyPalette colorsDictionary size equals: self colors size. 
-	
-	removedColor := nonEmptyPalette removeColorAt: 1.
-	self assert: removedColor equals: colorToRemove .
-	self assert: nonEmptyPalette colorsDictionary size equals: self colors size - 1.
-	self deny: (nonEmptyPalette colorsDictionary includesAssociation: 1->colorToRemove).
-	
-	"remove a non-existent color"
-	nonExistantKeyColor := 4.
-	self assert: (nonEmptyPalette removeColorAt: nonExistantKeyColor) equals: 0.
-	self assert: nonEmptyPalette colorsDictionary size equals: self colors size - 1.
-	
+GeneratedPaletteTest >> testWithAll [
 
+	| palette colorsDict indexColor |
+	palette := self classToTest withAll: self colors.
+	colorsDict := palette colorsDictionary.
+	self assert: colorsDict size equals: self colors size.
+	indexColor := 1.
+	colorsDict associationsDo: [ :each | 
+		self
+			assert: (colorsDict associationAt: each key)
+			equals: indexColor -> (self colors at: indexColor).
+		indexColor := indexColor + 1 ]
 ]
