@@ -5,7 +5,7 @@ I am a fixed qualitative palette generator. I can extract colors from predefined
 
 Example:
 ```Smalltalk
-ClPFixedQualitativePaletteGenerator 
+ClPPaletteGenerator fixedQualitative
 	generate: 10  ""generate a palette of 10 colors from a predefined collection of colors""
 ```
 "

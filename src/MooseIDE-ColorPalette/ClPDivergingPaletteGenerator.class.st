@@ -1,5 +1,5 @@
 "
-I am a diverging palette generator, and I can make a gradient of 3 colors.
+I am a diverging palette generator, I put as much emphasis on the critical values in the middle and the extremes at both ends of the data range. I can make a gradient of three colors.
 
 **Instance variables:**
 - startingColor: a starting color wich the gradient will begin
@@ -7,13 +7,6 @@ I am a diverging palette generator, and I can make a gradient of 3 colors.
 - endingColor: an ending color wich the gradient will finish
 - numberOfColors: a number of colors to make
 
-Example:
-```Smalltalk
-p := ClPDivergingPaletteGenerator new.
-""s: is startingColor, m: is the middleColor, e: is the endingColor""
-p s: Color red m: Color white e: Color green; 
-	generate: 10 ""generate 10 colors""
-```
 
 
 "

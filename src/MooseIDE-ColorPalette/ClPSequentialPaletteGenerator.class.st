@@ -1,17 +1,11 @@
 "
-I am a generator of sequential palette. I take 2 different colors and i can make a gradient between them. The number of colors also must be given.
+I am a generator of sequential palette. I am adapted to ordered data which evolves from bottom to top (gradient). I take two different colors and i can make a gradient between them. 
 
 **Instance variables:**
 - startingColor: a starting color wich the gradient will begin
 - endingColor: an ending color wich the gradient will finish
 - numberOfColors: a number of colors to make
 
-Example:
-```Smalltalk
-p := ClPSequentialPaletteGenerator new.
-p	startColor: Color red endColor: Color white;
-	generate: 10
-```
 "
 Class {
 	#name : #ClPSequentialPaletteGenerator,

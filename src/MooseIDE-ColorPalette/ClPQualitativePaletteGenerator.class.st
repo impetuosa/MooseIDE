@@ -6,14 +6,13 @@ In a qualitative palette, the colors assigned to each palette need to be distinc
 
 **Example to generate a palette of 10 colors:**
 ```Smalltalk
-p := ClPQualitativePaletteGenerator generate: 10.
+p := ClPPaletteGenerator qualitative generate: 10.
 p asCollection 
 ```
 
 **Example to define a level of brightness of the colors to be generated:**
 ```Smalltalk
-g := ClPQualitativePaletteGenerator new .
-p := g
+p := ClPPaletteGenerator qualitative
 	alpha: 0.6; ""for pastel colors""
 	generate: 10.
 p asCollection 
@@ -88,7 +87,7 @@ ClPQualitativePaletteGenerator >> generateRandomColorFrom: aColor [
 { #category : #accessing }
 ClPQualitativePaletteGenerator >> makeColors [
 	
-	^ self qualitative  
+	^ self qualitative
 ]
 
 { #category : #compute }
@@ -106,4 +105,12 @@ ClPQualitativePaletteGenerator >> qualitative [
 		colors add: nextColor.
 		currentColor := nextColor ].
 	^ colors
+]
+
+{ #category : #compute }
+ClPQualitativePaletteGenerator >> spacedValuesBetween: x and: y [
+
+	| step |
+	step := (y - x) / (self numberOfColors - 1).
+	^ (0 to: self numberOfColors-1) collect: [ :i | x + (step * i) ]
 ]

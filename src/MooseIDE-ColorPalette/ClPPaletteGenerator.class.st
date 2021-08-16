@@ -1,9 +1,43 @@
 "
-I am a generator of palettes. 
-Note: The number of colors to generate must be specified, the default value is 20
+I am a generator of palettes. I can generate three types of palettes: 
+- a sequential palette
+- a diverging palette 
+- a qualitative palette: there is a problem with the generation of qualitative palettes. The implemented algorithm is not powerful to generate quite distinct colors, for that you can use the fixed qualitative palette generator. 
+
+Note: The number of colors to generate must be specified using #generate:
 
 To generate a palette use the common method #generate:
 
+Sequential palette:
+
+```Smalltalk
+seqPal := ClPPaletteGenerator sequential
+	startColor: Color blue endColor: Color red;
+	generate: 10 ""generate a gradient of 10 color""	.
+seqPal asCollection ""to visualize colors""		
+```
+
+Diverging palette:
+```Smalltalk
+divPal := ClPPaletteGenerator diverging
+	s: Color blue m: Color white e: Color red;
+	generate: 10 
+divPal asCollection 	
+```
+
+Qualitative palette:
+```Smalltalk
+qualPal := ClPPaletteGenerator qualitative
+	generate: 10 	.
+qualPal asCollection 
+```
+
+Fixed qualitative palette:
+```Smalltalk
+fixedQualPal := ClPPaletteGenerator fixedQualitative
+	generate: 10 .
+fixedQualPal asCollection 
+```
 
 "
 Class {
@@ -53,19 +87,11 @@ ClPPaletteGenerator class >> sequential [
 ]
 
 { #category : #generating }
-ClPPaletteGenerator >> generate [
-
-	"generate 20 colors by default"
-
-	^ self generate: self numberOfColors
-]
-
-{ #category : #generating }
 ClPPaletteGenerator >> generate: aNumberOfColors [
 	
 	"return an object of GeneratePalette with the specified number of colors"
 	
-	self numberOfColors: aNumberOfColors .
+	numberOfColors := aNumberOfColors .
 	^ generatedPalette class withAll: self makeColors
 	
 	
@@ -120,7 +146,7 @@ ClPPaletteGenerator >> numberOfColors [
 ]
 
 { #category : #accessing }
-ClPPaletteGenerator >> numberOfColors: anInteger [
+ClPPaletteGenerator >> numberOfColors: anObject [
 
-	numberOfColors := anInteger  
+	numberOfColors := anObject
 ]
