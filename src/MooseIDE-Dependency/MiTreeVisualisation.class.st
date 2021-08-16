@@ -67,7 +67,7 @@ MiTreeVisualisation >> highlightShapes [
 MiTreeVisualisation >> newBox [
 	^ RSBox new
 		size: 100;
-		color: (palette colorAt: #nodeBackground);
+		color: (self palette defaultEntityBackground);
 		yourself
 ]
 
@@ -75,7 +75,7 @@ MiTreeVisualisation >> newBox [
 MiTreeVisualisation >> newLabel: name [
 	^ RSLabel new
 		text: name;
-		color: (palette colorAt: #label);
+		color: (self palette labelColor);
 		yourself
 ]
 
