@@ -50,7 +50,7 @@ MiVisualizationPalette >> defaultEntityBackground [
 { #category : #'api - accessing' }
 MiVisualizationPalette >> edgeColor [ 
 
-	^ colorsDictionary at: #contrasted
+	^ colorsDictionary at: #contrastedToTheme
 ]
 
 { #category : #'api - accessing' }
@@ -93,7 +93,7 @@ MiVisualizationPalette >> initialize [
 { #category : #'api - accessing' }
 MiVisualizationPalette >> labelColor [
 
-	^ colorsDictionary at: #contrasted
+	^ colorsDictionary at: #contrastedToTheme
 ]
 
 { #category : #'api - accessing' }
