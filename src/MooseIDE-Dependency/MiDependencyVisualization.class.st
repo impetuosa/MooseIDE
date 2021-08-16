@@ -24,7 +24,7 @@ MiDependencyVisualization >> buildDependencyLinks [
 	RSEdgeBuilder arrowedLine
 		canvas: self canvas;
 		withBorderAttachPoint;
-		color: (palette colorAt: #edge);
+		color: (self palette edgeColor);
 		source: self entities
 			connectFrom: #yourself
 			toAll:
