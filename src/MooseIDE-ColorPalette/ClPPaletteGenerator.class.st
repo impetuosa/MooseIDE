@@ -16,6 +16,18 @@ Class {
 	#category : #'MooseIDE-ColorPalette-PaletteGenerator'
 }
 
+{ #category : #'instance creation' }
+ClPPaletteGenerator class >> diverging [
+
+	^ ClPDivergingPaletteGenerator new
+]
+
+{ #category : #'instance creation' }
+ClPPaletteGenerator class >> fixedQualitative [
+
+	^ ClPFixedQualitativePaletteGenerator new
+]
+
 { #category : #translating }
 ClPPaletteGenerator class >> generate: aNumberOfColors [
 
@@ -26,6 +38,18 @@ ClPPaletteGenerator class >> generate: aNumberOfColors [
 ClPPaletteGenerator class >> isAbstract [
 	
 	^ self == ClPPaletteGenerator 
+]
+
+{ #category : #'instance creation' }
+ClPPaletteGenerator class >> qualitative [ 
+
+	^ ClPQualitativePaletteGenerator new
+]
+
+{ #category : #'instance creation' }
+ClPPaletteGenerator class >> sequential [ 
+
+	^ ClPSequentialPaletteGenerator new
 ]
 
 { #category : #generating }
