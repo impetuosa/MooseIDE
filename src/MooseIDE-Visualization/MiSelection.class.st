@@ -62,7 +62,7 @@ MiSelection >> putShadowOn: aShape [
 		fromRectangle:
 			(aShape encompassingRectangle
 				expandBy: aShape extent * self marginPercentage);
-		paint: (self palette colorAt: #highlightSelectedNode);
+		paint: self palette highlightSelectedEntity;
 		yourself.
 	aShape parent addShape: shadow before: aShape.
 	aShape topParent propertyAt: self key put: shadow
