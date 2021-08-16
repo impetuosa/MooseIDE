@@ -18,7 +18,7 @@ MiDependencyButterfly class >> createPalette [
 MiDependencyButterfly >> decorateEntity [
 	butterfly mainEntity: self entity.
 	(butterfly styleSheet > #entity)
-		backgroundColor: (palette colorAt: #mainNodeBackground);
+		backgroundColor: (self palette mainEntityBackground);
 		nodeLabel: #name.
 	butterfly > #central addStyle: #entity
 ]
@@ -27,7 +27,7 @@ MiDependencyButterfly >> decorateEntity [
 MiDependencyButterfly >> decorateIncoming [
 	butterfly
 		leftEntities: [ :e | e queryAllIncoming withoutSelfLoops atScope: entity class ].
-	butterfly styleSheet > #incoming backgroundColor: (palette colorAt: #incomingNodeBackground).
+	butterfly styleSheet > #incoming backgroundColor: (self palette incomingEntityBackground).
 	butterfly > #left addStyle: #incoming
 ]
 
@@ -35,7 +35,7 @@ MiDependencyButterfly >> decorateIncoming [
 MiDependencyButterfly >> decorateOutgoing [
 	butterfly
 		rightEntities: [ :e | e queryAllOutgoing withoutSelfLoops atScope: entity class ].
-	butterfly styleSheet > #outgoing backgroundColor: (palette colorAt: #outgoingNodeBackground).
+	butterfly styleSheet > #outgoing backgroundColor: (self palette outgoingEntityBackground).
 	butterfly > #right addStyle: #outgoing
 ]
 
