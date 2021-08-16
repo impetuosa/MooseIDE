@@ -8,12 +8,6 @@ Class {
 	#category : #'MooseIDE-Visualization'
 }
 
-{ #category : #'as yet unclassified' }
-MiAbstractVisualization class >> createPalette [ 
-
-	^ self subclassResponsibility 
-]
-
 { #category : #helpers }
 MiAbstractVisualization >> colorFor: anEntity [
 	^ (highlightedEntities includes: anEntity)

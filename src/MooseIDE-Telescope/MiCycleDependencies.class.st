@@ -7,12 +7,6 @@ Class {
 	#category : #'MooseIDE-Telescope-CycleDependencies'
 }
 
-{ #category : #'as yet unclassified' }
-MiCycleDependencies class >> createPalette [ 
-
-	^ MiCycleDependenciesPalette 
-]
-
 { #category : #accessing }
 MiCycleDependencies >> entities [
 	^ entities

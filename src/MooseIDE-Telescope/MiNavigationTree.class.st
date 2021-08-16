@@ -8,12 +8,6 @@ Class {
 	#category : #'MooseIDE-Telescope-NavigationTree'
 }
 
-{ #category : #'as yet unclassified' }
-MiNavigationTree class >> createPalette [ 
-
-	^ MiNavigationTreePalette 
-]
-
 { #category : #accessing }
 MiNavigationTree >> association [
 	^ association ifNil: [ self setAssociation ]

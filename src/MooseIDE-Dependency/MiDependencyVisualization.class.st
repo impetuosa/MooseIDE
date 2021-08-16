@@ -13,12 +13,6 @@ Class {
 	#category : #'MooseIDE-Dependency-Dependency'
 }
 
-{ #category : #'as yet unclassified' }
-MiDependencyVisualization class >> createPalette [ 
-
-	^ MiDependencyVisualizationPalette 
-]
-
 { #category : #running }
 MiDependencyVisualization >> buildDependencyLinks [
 	RSEdgeBuilder arrowedLine

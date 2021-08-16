@@ -8,12 +8,6 @@ Class {
 	#category : #'MooseIDE-Telescope-Butterfly'
 }
 
-{ #category : #'as yet unclassified' }
-MiDependencyButterfly class >> createPalette [ 
-
-	^ MiDependencyButterflyPalette 
-]
-
 { #category : #running }
 MiDependencyButterfly >> decorateEntity [
 	butterfly mainEntity: self entity.

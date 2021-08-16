@@ -11,12 +11,6 @@ Class {
 	#category : #'MooseIDE-Dependency-TreeMap'
 }
 
-{ #category : #'as yet unclassified' }
-MiTreeMap class >> createPalette [ 
-
-	^ MiTreeMapPalette 
-]
-
 { #category : #helpers }
 MiTreeMap >> borderFor: anEntity [
 	| children |

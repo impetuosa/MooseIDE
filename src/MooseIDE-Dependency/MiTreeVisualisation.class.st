@@ -8,12 +8,6 @@ Class {
 	#category : #'MooseIDE-Dependency-Tree'
 }
 
-{ #category : #'as yet unclassified' }
-MiTreeVisualisation class >> createPalette [ 
-
-	^ MiTreeVisualizationPalette  
-]
-
 { #category : #running }
 MiTreeVisualisation >> boxCompositeFor: cls [
 	| label box |
