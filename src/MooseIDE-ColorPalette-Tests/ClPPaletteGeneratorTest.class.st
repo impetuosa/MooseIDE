@@ -28,11 +28,13 @@ ClPPaletteGeneratorTest >> numberOfColors [
 { #category : #initialization }
 ClPPaletteGeneratorTest >> setUp [ 
 
-	generator := self classToTest new numberOfColors: self numberOfColors
+	generator := self classToTest new numberOfColors: self numberOfColors .
 ]
 
 { #category : #tests }
 ClPPaletteGeneratorTest >> testGenerate [
-
-	self assert: generator generate asCollection size equals: self numberOfColors  
+	
+	| generatedPalette |
+	generatedPalette := generator generate: self numberOfColors .
+	self assert:  generatedPalette asCollection size equals: self numberOfColors  
 ]
