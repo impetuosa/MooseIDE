@@ -5,6 +5,8 @@ Run with:
 ```Smalltalk
 SpColorChooser new openWithSpec
 ```
+
+<TODO>
 "
 Class {
 	#name : #SpColorChooser,
