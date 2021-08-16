@@ -23,7 +23,7 @@ MiAbstractVisualization >> colorFor: anEntity [
 
 { #category : #helpers }
 MiAbstractVisualization >> highlightColor [
-	^ palette highlight
+	^ self palette highlight
 ]
 
 { #category : #highlighting }
@@ -55,12 +55,18 @@ MiAbstractVisualization >> initialize [
 	super initialize.
 	highlightedEntities := MooseGroup new.
 	self script: [ :canvas | canvas @ RSCanvasController new noLegend ].
-	palette := self class createPalette new
+	palette := MiVisualizationPalette new
 ]
 
 { #category : #helpers }
 MiAbstractVisualization >> noHighlightColorFor: anEntity [
-	^ palette colorAt: #nodeBackground
+	^ self palette defaultEntityBackground
+]
+
+{ #category : #accessing }
+MiAbstractVisualization >> palette [
+
+	^ palette
 ]
 
 { #category : #running }
