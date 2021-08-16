@@ -57,9 +57,9 @@ MiDependencyVisualization >> colorForEdge: edge ofShape: shape [
 		ifFalse: [ edge model key ].
 	^ ((incomingDependencies at: shape model) includes: dependency)
 		ifTrue: [ ((outgoingDependencies at: shape model) includes: dependency)
-				ifTrue: [ "Incoming and outgoing" palette colorAt: #incomingOutgoingEdge ]
-				ifFalse: [ "Incoming" palette colorAt: #incomingEdge ] ]
-		ifFalse: [ "Outgoing" palette colorAt: #outgoingEdge ]
+				ifTrue: [ "Incoming and outgoing" self palette incomingAndOutgoingEdge ]
+				ifFalse: [ "Incoming" self palette incomingEdgeColor ] ]
+		ifFalse: [ "Outgoing" self palette outgoingEdgeColor ]
 ]
 
 { #category : #running }
@@ -67,8 +67,8 @@ MiDependencyVisualization >> colorScale [
 	^ NSScale linear
 		domain: #(1 500);
 		range:
-			{palette colorAt: #startingGradient.
-			palette colorAt: #endingGradient}
+			{self palette colorAt: #startingGradient.
+			self palette colorAt: #endingGradient}
 ]
 
 { #category : #accessing }
@@ -104,21 +104,21 @@ MiDependencyVisualization >> legend [
 			b
 				text: 'Number of lines of code'
 				withFadingRamp:
-					{(0 -> (palette colorAt: #startingGradient)).
-					(1 -> (palette colorAt: #endingGradient))}.
+					{(0 -> (self palette colorAt: #startingGradient)).
+					(1 -> (self palette colorAt: #endingGradient))}.
 			b
 				polymetricWidth: 'number of incoming dependencies'
 				height: 'number of outgoing dependencies'
 				box: 'Entity'.
-			b text: 'Outgoing' withShape: (self legendArrowColored: (palette colorAt: #outgoingEdge)).
+			b text: 'Outgoing' withShape: (self legendArrowColored: (self palette outgoingEdgeColor)).
 			b
 				text: 'Incoming'
-				withShape: (self legendArrowColored: (palette colorAt: #incomingEdge)).
-			b text: 'Both' withShape: (self legendArrowColored: (palette colorAt: #incomingOutgoingEdge)).
+				withShape: (self legendArrowColored: (self palette incomingEdgeColor)).
+			b text: 'Both' withShape: (self legendArrowColored: (self palette incomingAndOutgoingEdge)).
 			b
 				legendDo: [ :s | 
 					s
-						color: (palette colorAt: #legendBackground);
+						color: (self palette colorAt: #legendBackground);
 						scaleBy: 0.7;
 						padding: 15 ] ]
 ]
