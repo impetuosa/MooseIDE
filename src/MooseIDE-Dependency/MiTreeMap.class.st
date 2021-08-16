@@ -26,7 +26,7 @@ MiTreeMap >> borderFor: anEntity [
 		color:
 			((highlightedEntities includesAny: children)
 				ifTrue: [ self highlightColor ]
-				ifFalse: [palette colorAt: #border ])
+				ifFalse: [self palette borderColor ])
 ]
 
 { #category : #accessing }
