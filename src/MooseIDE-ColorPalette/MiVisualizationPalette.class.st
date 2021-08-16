@@ -15,16 +15,11 @@ MiVisualizationPalette >> beDefaultStyle [
 		at: #nodeBackground put: (Color r: 0.68 g: 0.83 b: 0.97); "smalltalk color lightBlue"	
 		at: #highlightSelectedNode put: (Color blue alpha: 0.3); "make a blue shadow behind the background of the selected entity"
 		
-		at: #contrasted put: Color black; "contrasted to the UI Theme"
-		at: #label put: Color black;
-		at: #edge put: Color black;
-		at: #textColor put: Color black;
+		at: #contrastedToTheme put: Color black; "contrasted to the UI Theme"
 		at: #border put: Color black;
 		
 		at: #mainNodeBackground put: Color red;
-		at: #incomingOutgoingEdge put: Color red;
-		at: #backgroundReceivedEntity put: Color red;
-		at: #inheritanceButtonsColor put: Color red;
+		at: #incomingAndOutgoingEdge put: Color red;
 		
 		at: #incomingNodeBackground put: Color green;
 		at: #incomingEdge put: Color green;
@@ -32,25 +27,18 @@ MiVisualizationPalette >> beDefaultStyle [
 		at: #outgoingNodeBackground put: Color blue;
 		at: #outgoingEdge put: Color blue;
 		
-		at: #startingGradient put: Color white; "this is for background boxes"
-		at: #endingGradient put: Color darkGray; "this is for background boxes"
-		at: #legendBackground put: (Color white alpha: 0.8);
-		at: #referenceButtonColor put: Color lightGray;
-		at: #boxBackground put: (Color colorFrom: 'cfd9df'); "light gray"
-		at: #boxBorder put: (Color colorFrom: '666EA0'); "dark blue"
-		at: #highlightSelectedEntity put: (Color blue alpha: 0.3)
+		at: #startingGradient put: Color white; "this is for background boxes in MiDependencyVisu"
+		at: #endingGradient put: Color darkGray; "this is for background boxes in MiDependencyVisu"
+		at: #legendBackground put: (Color white alpha: 0.8); "for miDependencyVisualization"
+		
+		at: #referenceButtonColor put: Color lightGray; "used in MiNavigationTreeVisualization>>#buildAssociationButtons"
+		at: #inheritanceButtonColor put: Color red "used in MiNavigationTreeVisualization>>#buildAssociationButtons"
 ]
 
 { #category : #'api - accessing' }
 MiVisualizationPalette >> borderColor [
 	
 	^ colorsDictionary at: #border
-]
-
-{ #category : #'api - accessing' }
-MiVisualizationPalette >> contrastedColor [
-	
-	^ colorsDictionary at: #label
 ]
 
 { #category : #'api - accessing' }
