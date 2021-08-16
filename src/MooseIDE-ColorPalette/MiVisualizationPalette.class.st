@@ -42,6 +42,12 @@ MiVisualizationPalette >> borderColor [
 ]
 
 { #category : #'api - accessing' }
+MiVisualizationPalette >> defaultEntityBackground [
+
+	^ self colorAt: #nodeBackground
+]
+
+{ #category : #'api - accessing' }
 MiVisualizationPalette >> edgeColor [ 
 
 	^ colorsDictionary at: #contrasted
@@ -57,6 +63,12 @@ MiVisualizationPalette >> highlight [
 MiVisualizationPalette >> highlightSelectedEntity [ 
 
 	^ colorsDictionary at: #highlightSelectedNode
+]
+
+{ #category : #'api - accessing' }
+MiVisualizationPalette >> incomingAndOutgoingEdge [ 
+
+	^ self colorAt: #incomingAndOutgoingEdge
 ]
 
 { #category : #'api - accessing' }
