@@ -25,6 +25,62 @@ Class {
 	#category : #'MooseIDE-ColorPalette-SpColorChooser'
 }
 
+{ #category : #specs }
+ColorPicker class >> defaultSpec [
+
+	^ SpBoxLayout newTopToBottom
+		  add: (SpBoxLayout newTopToBottom
+				   add: 'Minor color' height: 30;
+				   add: #minorColor height: 40;
+				   yourself)
+		  height: 70;
+		  add: (SpBoxLayout newTopToBottom
+				   add: 'Major color' height: 30;
+				   add: #majorColor height: 40;
+				   yourself)
+		  height: 70;
+		  add: (SpBoxLayout newTopToBottom
+				   add: 'Contrasted color' height: 30;
+				   add: #contrastedColor height: 40;
+				   yourself)
+		  height: 70;
+		  add: (SpBoxLayout newTopToBottom
+				   add: 'Number of colors' height: 30;
+				   add: #numberOfColors height: 40;
+				   yourself)
+		  height: 70;
+		  add: (SpBoxLayout newTopToBottom
+				   add: #rgbSlider ;
+				   yourself);
+			add: #paletteSample;
+		  add: #accept height: 50;
+		  yourself
+]
+
+{ #category : #examples }
+ColorPicker class >> example [
+
+	<sampleInstance>
+	| example |
+	example := self new
+		extent: 300 @ 250;
+		openWithSpec;
+		yourself.	
+	^ example
+]
+
+{ #category : #accessing }
+ColorPicker class >> title [ 
+	
+	^ 'Color picker'
+]
+
+{ #category : #specs }
+ColorPicker class >> windowSize [
+
+	^ 700 @ 700
+]
+
 { #category : #accessing }
 ColorPicker >> accept [
 
