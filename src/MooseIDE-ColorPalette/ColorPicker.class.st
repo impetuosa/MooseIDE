@@ -58,15 +58,10 @@ ColorPicker class >> defaultSpec [
 ]
 
 { #category : #examples }
-ColorPicker class >> example [
+ColorPicker class >> open [
 
-	<sampleInstance>
-	| example |
-	example := self new
-		extent: 300 @ 250;
-		openWithSpec;
-		yourself.	
-	^ example
+	<script>
+	self new openWithSpec
 ]
 
 { #category : #accessing }
