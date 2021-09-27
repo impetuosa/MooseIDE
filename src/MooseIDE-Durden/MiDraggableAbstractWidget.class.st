@@ -116,6 +116,12 @@ MiDraggableAbstractWidget >> canBeAdaptedToDropInto: aDestination [
 	^ true
 ]
 
+{ #category : #testing }
+MiDraggableAbstractWidget >> canReceiveEntity: anAlcixModel [
+
+	^ self accept: anAlcixModel
+]
+
 { #category : #accessing }
 MiDraggableAbstractWidget >> colorForTable: anEntity [
 
@@ -132,6 +138,13 @@ MiDraggableAbstractWidget >> dragTilte [
 MiDraggableAbstractWidget >> followAction [
 
 	self subclassResponsibility
+]
+
+{ #category : #actions }
+MiDraggableAbstractWidget >> followEntity: anAlcixModel [
+
+	toSelect := anAlcixModel.
+	self followAction
 ]
 
 { #category : #actions }
@@ -205,6 +218,18 @@ MiDraggableAbstractWidget >> miSelectedItem [
 MiDraggableAbstractWidget >> propagate [
 
 	browser ifNotNil: [ browser propagate: self  ]
+]
+
+{ #category : #accessing }
+MiDraggableAbstractWidget >> selectEntity: anEntity [
+
+	"accessing"
+
+	anEntity ifNil: [ ^ self ].
+	(self accept: anEntity) ifFalse: [ ^ self ].
+	toSelect := anEntity.
+
+	MiFollowMode browser: self actOnEntity: anEntity
 ]
 
 { #category : #accessing }

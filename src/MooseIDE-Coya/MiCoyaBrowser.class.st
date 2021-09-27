@@ -2,8 +2,10 @@ Class {
 	#name : #MiCoyaBrowser,
 	#superclass : #CoyaSpecWidget,
 	#instVars : [
-		'#models',
-		'#mooseModel => CoyaPublishSlot topic: #runningMooseModel'
+		'toolbar',
+		'up',
+		'down',
+		'status'
 	],
 	#category : #'MooseIDE-Coya-Browser'
 }
@@ -29,6 +31,20 @@ MiCoyaBrowser class >> open [
 ]
 
 { #category : #initialization }
+MiCoyaBrowser >> addViewer [
+	
+]
+
+{ #category : #initialization }
+MiCoyaBrowser >> configureToolBar [
+
+	toolbar := self newToolbar.
+	toolbar addItem: (self newToolbarButton
+			 icon: (self iconNamed: #smallAdd);
+			 action: [ self addViewer ])
+]
+
+{ #category : #initialization }
 MiCoyaBrowser >> initializePresenters [
 
 	super initializePresenters.
@@ -46,6 +62,34 @@ MiCoyaBrowser >> initializeTopicsAndServices [
 		subscribe: #allMooseModels
 		activating: #updateListModels:
 		filter: (CoyaFilter shouldBeKindOf: MooseModel)
+]
+
+{ #category : #initialization }
+MiCoyaBrowser >> installTransfer: aTransfer into: destination [
+	(destination install: aTransfer passenger)
+		dragTilte;
+		browser: self;
+		whenClose: [ :a | destination noteThatWidgetHasBeenClosed:  a ].
+	aTransfer passenger hasBeenReinstalled
+]
+
+{ #category : #initialization }
+MiCoyaBrowser >> newMultiDropInContainer [
+
+	^ ((self instantiate: SpMultiDropInContainer)
+		   borderWidth: 2;
+		   dropEnabled: true;
+		   wantsDrop: [ :transfer :destination | 
+			   self shouldAcceptTransfer: transfer into: destination ];
+		   acceptDrop: [ :transfer :destination | 
+			   self installTransfer: transfer into: destination ]) yourself
+]
+
+{ #category : #initialization }
+MiCoyaBrowser >> shouldAcceptTransfer: aTransfer into: aDestination [
+
+	(aTransfer isKindOf: SpTransferMorph) ifFalse: [ ^ false ].
+	^ aTransfer passenger canBeAdaptedToDropInto: aDestination
 ]
 
 { #category : #initialization }
