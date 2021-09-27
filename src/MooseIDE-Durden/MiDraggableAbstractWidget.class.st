@@ -160,14 +160,6 @@ MiDraggableAbstractWidget >> hasBeenReinstalled [
 	selection ifNotNil: [ self followAction ].
 ]
 
-{ #category : #testing }
-MiDraggableAbstractWidget >> iconFor: anEntity [
-
-	(anEntity respondsTo: #type) ifNil: [ 
-		^ MiAlceIdeIcons untypedfieldIcon ].
-	^ MiAlceIdeIcons iconFor: anEntity
-]
-
 { #category : #actions }
 MiDraggableAbstractWidget >> initializePresenters [
 
@@ -213,15 +205,6 @@ MiDraggableAbstractWidget >> miSelectedItem [
 MiDraggableAbstractWidget >> propagate [
 
 	browser ifNotNil: [ browser propagate: self  ]
-]
-
-{ #category : #accessing }
-MiDraggableAbstractWidget >> selectEntity: anEntity [
-
-	anEntity ifNil: [ ^ self ].
-	(self accept: anEntity) ifFalse: [ ^ self ].
-	toSelect := anEntity.
-	AbstractBrowserMode actionFor: self
 ]
 
 { #category : #accessing }
