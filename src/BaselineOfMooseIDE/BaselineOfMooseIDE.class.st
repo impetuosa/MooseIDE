@@ -11,6 +11,7 @@ BaselineOfMooseIDE >> baseline: spec [
 	spec for: #common do: [ "Dependencies"
 		
 		self tylerDurden: spec. 
+		self coya: spec. 
 		self famixQueries: spec.
 		self telescope: spec.
 		self labelContractor: spec.
@@ -37,6 +38,13 @@ BaselineOfMooseIDE >> baseline: spec [
 		spec postLoadDoIt: #registerCustomTools ]
 ]
 
+{ #category : #dependencies }
+BaselineOfMooseIDE >> coya: spec [
+	spec
+		baseline: 'Coya'
+		with: [ spec repository: 'github://sbragagnolo/Coya' ]
+]
+
 { #category : #accessing }
 BaselineOfMooseIDE >> customProjectAttributes [
 
@@ -57,7 +65,7 @@ BaselineOfMooseIDE >> defineGroups: spec [
 			   'MooseIDE-Export' 'MooseIDE-NewTools' 'MooseIDE-NewTools-Tests'
 			   'MooseIDE-QueriesBrowser' 'MooseIDE-QueriesBrowser-Tests'
 			   'MooseIDE-ColorPalette' 'MooseIDE-ColorPalette-Tests'
-			   'MooseIDE-Durden' )
+			   'MooseIDE-Durden' 'MooseIDE-Coya')
 ]
 
 { #category : #baselines }
@@ -101,7 +109,8 @@ BaselineOfMooseIDE >> definePackages: spec [
 		package: 'MooseIDE-ColorPalette';
 		package: 'MooseIDE-ColorPalette-Tests'
 		with: [ spec requires: #( 'MooseIDE-ColorPalette' ) ];
-		package: 'MooseIDE-Durden' with: [ spec requires: #( 'Durden' ) ]
+		package: 'MooseIDE-Durden' with: [ spec requires: #( 'Durden' ) ];
+		package: 'MooseIDE-Coya' with: [ spec requires: #( 'Coya' ) ]
 ]
 
 { #category : #dependencies }
