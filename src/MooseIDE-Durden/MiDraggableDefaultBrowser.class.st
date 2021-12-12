@@ -79,6 +79,11 @@ MiDraggableDefaultBrowser >> close [
 	 window close 
 ]
 
+{ #category : #testing }
+MiDraggableDefaultBrowser >> dragTilte [
+	widget dragTilte 
+]
+
 { #category : #initialization }
 MiDraggableDefaultBrowser >> followAction [
 
@@ -133,6 +138,12 @@ MiDraggableDefaultBrowser >> selectEntity: anEntity [
 
 	widget selectEntity: anEntity.
 
+]
+
+{ #category : #actions }
+MiDraggableDefaultBrowser >> startDragging [
+
+	widget startDragging
 ]
 
 { #category : #accessing }

@@ -10,7 +10,8 @@ Class {
 		'browser',
 		'dragMe',
 		'dragMeOut',
-		'close'
+		'close',
+		'freezeButton'
 	],
 	#category : #'MooseIDE-Durden'
 }
@@ -27,6 +28,7 @@ MiDraggableAbstractWidget class >> basicDefaultSpec [
 	^ SpBoxLayout newVertical
 		  add: (SpBoxLayout newLeftToRight
 				   add: #dragMe;
+				   add: #freezeButton width: self iconWidth;
 				   add: #dragMeOut width: self iconWidth;
 				   add: #close width: self iconWidth;
 				   yourself)
@@ -85,25 +87,8 @@ MiDraggableAbstractWidget >> adaptToDropInto: aDropDestination [
 
 { #category : #opening }
 MiDraggableAbstractWidget >> browse: anAlcixLocalVariable [
+	(AlceSourceCodePropagator new relatedWidget: self ) browse: anAlcixLocalVariable.
 
-	(anAlcixLocalVariable respondsTo: #invocable)
-		ifTrue: [ 
-			selection := anAlcixLocalVariable invocable userType container.
-			self propagate.
-			selection := anAlcixLocalVariable invocable userType.
-			self propagate.
-			selection := anAlcixLocalVariable invocable.
-			self propagate.
-			selection := anAlcixLocalVariable anchor.
-			self propagate ]
-		ifFalse: [ 
-			selection := anAlcixLocalVariable userType container.
-			self propagate.
-			selection := anAlcixLocalVariable userType.
-			self propagate.
-			selection := anAlcixLocalVariable.
-			self propagate.
-			selection := anAlcixLocalVariable anchor ]
 ]
 
 { #category : #opening }
@@ -153,6 +138,11 @@ MiDraggableAbstractWidget >> freezeAction [
 	^ self
 ]
 
+{ #category : #actions }
+MiDraggableAbstractWidget >> freezeDuring: aFullBlockClosure [ 
+	self shouldBeImplemented.
+]
+
 { #category : #accessing }
 MiDraggableAbstractWidget >> getSelectedItem: aSelection [
 
@@ -182,14 +172,23 @@ MiDraggableAbstractWidget >> initializePresenters [
 	dragMe label: 'Drag'.
 	dragMeOut := self newButton.
 	dragMeOut action: [ 
-		owner noteThatWidgetHasBeenClosed: self. 
+		owner noteThatWidgetHasBeenClosed: self.
 		MiDraggableDefaultBrowser new
 			widget: self;
-			openWithSpec.
- ].
-	dragMeOut label:'->'.
+			openWithSpec ].
+	freezeButton := self newToggleButton
+		                icon: (self iconNamed: #smallLock);
+		                help: #'Freeze content from next interactions';
+		                yourself.
+
+	dragMeOut
+		icon: (self iconNamed: #glamorousOver);
+		help: #'Undeck widget';
+		yourself.
 	close := self newButton.
-	close label: 'X'
+	close
+		help: #'Close widget';
+		icon: (self iconNamed: #glamorousClose)
 ]
 
 { #category : #testing }
@@ -226,6 +225,7 @@ MiDraggableAbstractWidget >> selectEntity: anEntity [
 	"accessing"
 
 	anEntity ifNil: [ ^ self ].
+	freezeButton ifNotNil: [freezeButton state ifTrue: [ ^ self ]].
 	(self accept: anEntity) ifFalse: [ ^ self ].
 	toSelect := anEntity.
 
@@ -237,6 +237,11 @@ MiDraggableAbstractWidget >> selection: aSelection [
 
 	selection := self getSelectedItem: aSelection.
 	self propagate
+]
+
+{ #category : #actions }
+MiDraggableAbstractWidget >> startDragging [
+	^ dragMe startDragging
 ]
 
 { #category : #testing }

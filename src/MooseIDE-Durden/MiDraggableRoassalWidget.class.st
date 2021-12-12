@@ -6,7 +6,8 @@ Class {
 	#superclass : #MiDraggableAbstractWidget,
 	#instVars : [
 		'viewport',
-		'refresh'
+		'refresh',
+		'mustRefresh'
 	],
 	#category : #'MooseIDE-Durden'
 }
@@ -35,7 +36,15 @@ MiDraggableRoassalWidget >> element [
 MiDraggableRoassalWidget >> followAction [
 
 	self viewport script: [ :aCanvas | 
-		self loadChart: aCanvas withElement: self element ]
+		self mustRefresh ifTrue: [ 
+			self loadChart: aCanvas withElement: self element.
+			mustRefresh := false ] ]
+]
+
+{ #category : #initialization }
+MiDraggableRoassalWidget >> hasBeenReinstalled [
+	super hasBeenReinstalled.
+	mustRefresh := true.
 ]
 
 { #category : #initialization }
@@ -46,7 +55,8 @@ MiDraggableRoassalWidget >> initializePresenters [
 		            (self class environment classNamed: #SpRoassalPresenter).
 	refresh := self newButton.
 	refresh label: 'Refresh'.
-	refresh action: [ self refresh ]
+	refresh action: [ self refresh ].
+	mustRefresh := true. 
 ]
 
 { #category : #initialization }
@@ -57,9 +67,27 @@ MiDraggableRoassalWidget >> loadChart: aCanvas withElement: anElement [
 ]
 
 { #category : #initialization }
-MiDraggableRoassalWidget >> refresh [
+MiDraggableRoassalWidget >> mustRefresh [
 
+	^ mustRefresh ifNil: [ false ]
+]
+
+{ #category : #initialization }
+MiDraggableRoassalWidget >> refresh [
+	mustRefresh := true. 
 	self followAction
+]
+
+{ #category : #initialization }
+MiDraggableRoassalWidget >> selectEntity: anEntity [
+
+	"accessing"
+
+	anEntity ifNil: [ ^ self ].
+	freezeButton ifNotNil: [ :f | f state ifTrue: [ ^ self ] ].
+	(self accept: anEntity) ifFalse: [ ^ self ].
+	mustRefresh := true.
+	super selectEntity: anEntity
 ]
 
 { #category : #initialization }

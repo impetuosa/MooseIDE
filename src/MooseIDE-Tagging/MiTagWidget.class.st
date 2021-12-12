@@ -56,7 +56,8 @@ MiTagWidget >> bind [
 	name text: tag name.
 	description text:
 		(tag description ifNil: [ 'Enter here a description' ]).
-	colorWidget selectedColor: (tag color ifNil: [ Color white ])
+
+	colorWidget setColor: (tag color ifNil: [ Color white ])
 ]
 
 { #category : #actions }
@@ -71,7 +72,7 @@ MiTagWidget >> initializePresenters [
 	super initializePresenters.
 	name := self newTextInput.
 	description := self newText.
-	colorWidget := self instantiate: SpColorDropdownList.
+	colorWidget := self instantiate: SpRGBChooser.
 
 	save := self newButton
 		        icon: (self iconNamed: #smallOk);

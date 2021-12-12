@@ -13,10 +13,11 @@ MiTagEntity class >> buildCommandsGroupWith: aPresenter forRoot: rootCommandGrou
 
 	| group tags groupCat categories model element |
 	(self canBeExecutedOn: aPresenter miSelectedItem) ifFalse: [ ^ self ].
-	model := aPresenter miSelectedItem mooseModel.
-	element := aPresenter miSelectedItem.
 
-
+	element := aPresenter miSelectedItem isCollection
+		           ifTrue: [ aPresenter miSelectedItem first ]
+		           ifFalse: [ aPresenter miSelectedItem ].
+	model := element mooseModel.
 	group := CmCommandGroup new.
 	group name: 'Tagging'.
 
@@ -31,6 +32,7 @@ MiTagEntity class >> buildCommandsGroupWith: aPresenter forRoot: rootCommandGrou
 				| command |
 				command := self forSpecContext: aPresenter.
 				command name: c name.
+
 				(element isTaggedWith: c)
 					ifTrue: [ command decoratedCommand forRemoval ]
 					ifFalse: [ command decoratedCommand forAdding ].
@@ -43,7 +45,9 @@ MiTagEntity class >> buildCommandsGroupWith: aPresenter forRoot: rootCommandGrou
 { #category : #'accessing - defaults' }
 MiTagEntity class >> canBeExecutedOn: anObject [
 
-	^ anObject isKindOf: MooseEntity
+	^ anObject isCollection
+		  ifTrue: [ anObject allSatisfy: [ :a | self canBeExecutedOn: a ] ]
+		  ifFalse: [ anObject isKindOf: MooseEntity ]
 ]
 
 { #category : #'accessing - defaults' }
@@ -60,9 +64,22 @@ MiTagEntity >> canBeExecuted [
 { #category : #'property - generated' }
 MiTagEntity >> execute [
 
+	| obj |
+	obj := self context miSelectedItem.
+
+
+
+	obj isCollection
+		ifTrue: [ obj do: [ :o | self executeOn: o ] ]
+		ifFalse: [ self executeOn: obj ]
+]
+
+{ #category : #'property - generated' }
+MiTagEntity >> executeOn: o [
+
 	removal
-		ifTrue: [ self context miSelectedItem removeTag: tag ]
-		ifFalse: [ self context miSelectedItem tagWith: tag ]
+		ifTrue: [ o removeTag: tag ]
+		ifFalse: [ o tagWith: tag ]
 ]
 
 { #category : #'property - generated' }
