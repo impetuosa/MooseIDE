@@ -14,8 +14,8 @@ Class {
 	#category : #'MooseIDE-Tagging-Browser'
 }
 
-{ #category : #specs }
-MiTagManagementPage class >> defaultSpec [
+{ #category : #layout }
+MiTagManagementPage class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		  add: (SpBoxLayout newLeftToRight

@@ -31,8 +31,8 @@ Class {
 	#category : #'MooseIDE-Tagging-Browser'
 }
 
-{ #category : #specs }
-SpAddRemoveListPresenter class >> defaultSpec [
+{ #category : #layout }
+SpAddRemoveListPresenter class >> defaultLayout [
 
 	^SpGridLayout new
 		add: #lstAll at: 1 @ 1 ;

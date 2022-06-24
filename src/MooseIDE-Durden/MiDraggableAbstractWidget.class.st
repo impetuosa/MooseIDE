@@ -43,6 +43,12 @@ MiDraggableAbstractWidget class >> buildCommandsGroupWith: presenterInstance for
 ]
 
 { #category : #commands }
+MiDraggableAbstractWidget class >> defaultLayout [ 
+
+	^ self basicDefaultSpec
+]
+
+{ #category : #commands }
 MiDraggableAbstractWidget class >> defaultSpec [
 
 	^ self basicDefaultSpec
@@ -73,9 +79,9 @@ MiDraggableAbstractWidget class >> runMe [
 ]
 
 { #category : #accessing }
-MiDraggableAbstractWidget >> accept: anEntity [
+MiDraggableAbstractWidget >> accept: anAlcixModel [
 
-	self subclassResponsibility
+	^ self canFollowEntity: anAlcixModel
 ]
 
 { #category : #opening }
@@ -175,7 +181,7 @@ MiDraggableAbstractWidget >> initializePresenters [
 		owner noteThatWidgetHasBeenClosed: self.
 		MiDraggableDefaultBrowser new
 			widget: self;
-			openWithSpec ].
+			open ].
 	freezeButton := self newToggleButton
 		                icon: (self iconNamed: #smallLock);
 		                help: #'Freeze content from next interactions';
@@ -217,6 +223,12 @@ MiDraggableAbstractWidget >> miSelectedItem [
 MiDraggableAbstractWidget >> propagate [
 
 	browser ifNotNil: [ browser propagate: self  ]
+]
+
+{ #category : #'instance creation' }
+MiDraggableAbstractWidget >> propagate: anAlcixAttribute [
+
+	browser ifNotNil: [ browser propagate: anAlcixAttribute from: self ]
 ]
 
 { #category : #accessing }

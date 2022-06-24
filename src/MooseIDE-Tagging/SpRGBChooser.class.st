@@ -21,8 +21,8 @@ Class {
 	#category : #'MooseIDE-Tagging-Browser'
 }
 
-{ #category : #initialization }
-SpRGBChooser class >> defaultSpec [
+{ #category : #layout }
+SpRGBChooser class >> defaultLayout [
 	^SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
 			add: #colorPreview expand: false ;

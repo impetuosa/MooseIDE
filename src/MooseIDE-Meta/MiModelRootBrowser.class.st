@@ -28,8 +28,8 @@ MiModelRootBrowser class >> buildCommandsGroupWith: presenterInstance forRoot: r
 		register: (MiModelUtilityCommand asCommandGroupWith: presenterInstance)
 ]
 
-{ #category : #specs }
-MiModelRootBrowser class >> defaultSpec [
+{ #category : #layout }
+MiModelRootBrowser class >> defaultLayout [
 
 	^ super defaultSpec
 		  add: #toolbar

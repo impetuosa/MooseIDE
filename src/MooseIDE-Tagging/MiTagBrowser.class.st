@@ -16,8 +16,8 @@ Class {
 	#category : #'MooseIDE-Tagging-Browser'
 }
 
-{ #category : #specs }
-MiTagBrowser class >> defaultSpec [
+{ #category : #layout }
+MiTagBrowser class >> defaultLayout [
 	^super defaultSpec
 		add: #mainPresenter;
 		yourself
